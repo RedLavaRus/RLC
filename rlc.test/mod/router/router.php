@@ -6,7 +6,6 @@ Class Router{
 
     public $way = null; //Пусть fjdklf/ewew/ewewe/ewew
     public $parameter = null; //Параметры он же гет ?fjkd=ewe
-    public $anchor; // Якоть он же #klkl
     public $file; // Файл в djladj/ewqeqw/index.png он тут index.png
 
     public $get;
@@ -14,8 +13,10 @@ Class Router{
 
     public function __construct(){
         $this->way();
-        $this->parram();
-        var_dump($this);
+        $this->param();
+        $this->get();
+        $this->post();
+        var_dump("<pre>",$this);
     }
 
     public function way(){
@@ -31,7 +32,16 @@ Class Router{
         $this->way .= "/";
     }
 
-    public function parram(){
-        
+    public function param(){
+        $this->parameter = $_GET;
+        return;
+    }
+
+    public function get(){
+        $this->get = $_GET;
+    }
+
+    public function post(){
+        $this->post = $_POST;
     }
 }
