@@ -16,6 +16,7 @@ Class Router{
         $this->param();
         $this->get();
         $this->post();
+        $this->start();
         var_dump("<pre>",$this);
     }
 
@@ -43,5 +44,9 @@ Class Router{
 
     public function post(){
         $this->post = $_POST;
+    }
+    
+    public function start(){
+
     }
 }
