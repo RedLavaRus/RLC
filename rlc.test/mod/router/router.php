@@ -17,8 +17,7 @@ Class Router{
         $this->get();
         $this->post();
         $this->start();
-        $sql = new \Mod\Sql\Sql;
-        var_dump("<pre>",$sql);
+        
     }
 
     public function way(){
