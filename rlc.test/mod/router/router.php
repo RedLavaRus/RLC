@@ -17,8 +17,8 @@ Class Router{
         $this->get();
         $this->post();
         $this->start();
-        new \Mod\Sql\Sql;
-        var_dump("<pre>",$this);
+        $sql = new \Mod\Sql\Sql;
+        var_dump("<pre>",$sql);
     }
 
     public function way(){
@@ -48,6 +48,25 @@ Class Router{
     }
 
     public function start(){
-
+        
+        //Запрос        
+        $sql = new \Mod\Sql\Sql;
+        $connect = $sql->db_connect;
+            $sth = $connect->prepare("SELECT * FROM `router` WHERE `url` = ?");
+            $sth->execute(array($this->way));
+            $result_sql = $sth->fetch(\PDO::FETCH_ASSOC);
+        //Проверка на сущность
+        if(!($result_sql["id"] >= 1)) {
+            $this->e404();
+            die();
+        }
+        //Вывод класс
+        $class = $result_sql["class"];
+        $funct = $result_sql["funct"];
+        $result = new $class;
+        $result->$funct();
+    }
+    public function e404(){
+        echo "error 404: page don't faunt!";
     }
 }
