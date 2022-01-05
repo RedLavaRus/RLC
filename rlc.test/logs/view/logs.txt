@@ -3,3 +3,4 @@
 [05.01.2022 10:44:59] system: Не найдет файл: 
 [05.01.2022 10:45:20] system: Не найдет файл: E:\OpenServer\domains\rlc.test\inter\thems\standart\footer1.php
 [05.01.2022 10:45:59] system: Не найдет файл: E:\OpenServer\domains\rlc.test\inter\thems\standart\footer1.php
+[05.01.2022 12:04:44] system: Не найдет файл: E:\OpenServer\domains\rlc.test\inter\thems\standart\footer1.php
