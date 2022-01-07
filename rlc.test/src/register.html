@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <div class="navigation container">
+        <div class="navigation_logotip"><img class="navigation_logotip_img" src="img/RedLava.png" alt=""></div>
+
+        <div class="navigation_link">
+            <a class="navigation_link_shop" href="#">магазин</a>
+            <a class="navigation_link_about_us" href="#">о нас</a>
+            <a class="navigation_link_articles" href="#">статьи</a>
+            <a class="navigation_link_help" href="#">справка</a>
+        </div>
+        <div class="navigation_right_side">
+            <div class="navigation_basket">
+                <a class="navigation_basket_button" href="#"><img class="navigation_basket_img" src="img/ShoppingBasket.png" alt=""></a>
+            </div>
+            <div class="navigation_login">
+                <a class="navigation_login_button" href="#">Вход</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="register container">
+        <div class="register_title">Регистрация</div>
+
+        <div class="register_error">
+            Не верный логин
+        </div>
+        <p>
+            <input class="register_username" id="username" name="username" required="required" type="text" placeholder="Имя" />
+        </p>
+
+        <div class="register_error">Не верный логин
+        </div>
+        <p>
+            <input class="register_password" id="password" name="password" required="required" type="password" placeholder="Пароль" />
+        </p>
+
+        <div class="register_error">&nbsp;
+        </div>
+        <p>
+            <input class="register_password" id="password" name="password" required="required" type="password" placeholder="Повторите пароль" />
+        </p>
+
+        <div class="register_error">&nbsp;
+        </div>
+        <p>
+            <input class="register_password" id="email" name="email" required="required" type="email" placeholder="E-mail" />
+        </p>
+        <p class="keep_register">
+            <input type="checkbox" name="loginkeeping" id="loginkeeping" value="loginkeeping" />
+            <label for="loginkeeping">Даю согласие на обработку персональных данных</label>
+        </p>
+
+        <div class="register_captcha">
+            <img class="register_captcha_img" src="img/captcha-internet-translate.jpg" alt="">
+            <input class="register_captcha_input" id="captcha" name="captcha" required="required" type="captcha" placeholder=" Введите текст с картинки" />
+        </div>
+
+        <div class="register_box_button">
+            <a class="register_button_login" href="">Вход</a>
+            <p class="register_button">
+                <input class="register_button_input" type="submit" value="Далее" />
+            </p>
+        </div>
+    </div>
+
+    <div class="footer_bacgraund">
+        <div class="footer container">
+
+            <div class="footer_logo"><img src="img/RedLava2.png" alt=""></div>
+            <div class="footer_copyright">Copyright © 2022 RedLava Все права защищены.</div>
+        </div>
+    </div>
+</body>
+
+</html>
