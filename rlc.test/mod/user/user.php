@@ -28,6 +28,12 @@ Class User{
     new \Mod\User\Config;
 
    */
+    public function startLogin(){
+        //Проверка нажата ли кнопка
+
+        //Вывод формы
+    }
+
     public function register(){
         $login = "21312312";
         $pass1 = "21312312";
@@ -64,7 +70,7 @@ Class User{
         }
         return;
     }
-
+    
     public function length_check($type,$var){
         $cfg = new \Mod\User\Config;
         if($type == "login"){
