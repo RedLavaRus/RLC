@@ -28,10 +28,33 @@ Class User{
     new \Mod\User\Config;
 
    */
-    public function startLogin(){
+    public function start_login(){
         //Проверка нажата ли кнопка
 
         //Вывод формы
+        $this->show_login();
+    }
+    public function start_register(){
+        //Проверка нажата ли кнопка
+
+        //Вывод формы
+        $this->show_register();
+    }
+
+    public function show_login(){
+        $page[]="linemenu";
+        $page[]="login";
+        $page[]="footer";
+        $view = new \Mod\View\View;
+        $view->show($page);
+    }
+
+    public function show_register(){
+        $page[]="linemenu";
+        $page[]="register";
+        $page[]="footer";
+        $view = new \Mod\View\View;
+        $view->show($page);
     }
 
     public function register(){
