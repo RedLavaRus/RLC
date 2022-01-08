@@ -29,16 +29,67 @@ Class User{
 
    */
     public function start_login(){
+        //Преобразовать форму в массив
+        $login =  "login";
+        $password =  "pass";
+        $button =  "gotovo";
+        $array_data = $this->form_array_login($login, $password,$button);
         //Проверка нажата ли кнопка
-
+        $pres = $this->check_button_pressed($array_data);
         //Вывод формы
-        $this->show_login();
+        if(!$pres){
+            $this->show_register();
+            return $this;
+        }
     }
     public function start_register(){
+        //Начальные данные
+        $login = "";
+        $password1 = "";
+        $password2 = "";
+        $email = "";
+        $button =  "gotovo";        
+        $array_data = $this->form_array_register($login, $password1, $password2, $email,$button);
         //Проверка нажата ли кнопка
-
+        $pres = $this->check_button_pressed($array_data);
         //Вывод формы
-        $this->show_register();
+        if(!$pres){
+            $this->show_register();
+            return $this;
+        }
+        $this->register($array_data);
+    }
+    /*
+        Преобразовывает данные с формыв единый массив
+        TODO: Добавить проверку капчи
+    */
+    public function form_array_login($login, $password,$button){
+        $array_data["login"] = $login;
+        $array_data["password1"] = $password;
+        $array_data["button"] = $button;
+        return  $array_data;
+    }
+    /*
+        Преобразовывает данные с формыв единый массив
+        TODO: Добавить проверку капчи
+    */
+    public function form_array_register($login, $password1, $password2, $email,$button){
+        $array_data["login"] = $login;
+        $array_data["password1"] = $password1;
+        $array_data["password2"] = $password2;
+        $array_data["email"] = $email;
+        $array_data["button"] = $button;
+        return  $array_data;
+    }
+    /*
+        Проверка нажата ли кнопка авторизации
+        Возвращает труе или фалсе
+    */
+    public function check_button_pressed($button){
+        if($button["button"] == "Готово"){
+            return true;
+        }
+        return false;
     }
 
     public function show_login(){
@@ -48,7 +99,9 @@ Class User{
         $view = new \Mod\View\View;
         $view->show($page);
     }
-
+    /*
+        Показать форму регистрации
+    */
     public function show_register(){
         $page[]="linemenu";
         $page[]="register";
@@ -57,20 +110,29 @@ Class User{
         $view->show($page);
     }
 
-    public function register(){
-        $login = "21312312";
-        $pass1 = "21312312";
-        $pass2 = "21312312";
-        $email = "test@test.ru";
-        //проверить совпадают ли пароли
-        $this->checking_uniformity($pass1, $pass2);
-        //Проверить соответствует ли длина логина
-        $this->length_check("login", $login);
-        //проверить соответсвует ли длина пароля
-        $this->length_check("pass",$pass1);
-        //проверить релевантность емаила
-        $this->checking_email($email);
+    /*
+        Запуск процесса регистрации
+    */
+    public function register($array_data){
         //проверка на ошибки
+        $error = $this-> error_ckeking_register($array_data);
+    }
+
+    /*
+        Процесс проверки регистрации на оишбку
+    */
+
+    public function error_ckeking_register($array_data){
+        $error = null;
+        //проверить совпадают ли пароли
+        $error[] = $this->checking_uniformity($array_data);
+        //Проверить соответствует ли длина логина
+        $error[] = $this->length_check("login", $array_data);
+        //проверить соответсвует ли длина пароля
+        $error[] = $this->length_check("pass",$array_data);
+        //проверить релевантность емаила
+        $error[] = $this->checking_email($array_data);
+        return $error;
     }
    
     public function auth(){
@@ -85,45 +147,47 @@ Class User{
         
     }
 
-    public function checking_uniformity($pass1, $pass2){        
-        if($pass1 != $pass2){
-            $e["active"] = "act";
-            $e["pass1"] = "Пароли не совпадают";
-            $e["pass2"] = "Пароли не совпадают";
+    public function checking_uniformity($array_data){        
+        if($array_data["password1"] != $array_data["password2"]){
+            $error["active"] = "act";
+            $error["pass1"] = "Пароли не совпадают";
+            $error["pass2"] = "Пароли не совпадают";
         }
-        return;
+        return $error;
     }
     
-    public function length_check($type,$var){
+    public function length_check($type,$array_data){
         $cfg = new \Mod\User\Config;
         if($type == "login"){
-            if(strlen($var) > $cfg->max_login){
-                $e["active"] = "act";
-                $e["login"] = "Максимальная длинна логина ".$cfg->max_login." символов.";
+            if(strlen($array_data["login"]) > $cfg->max_login){
+                $error["active"] = "act";
+                $error["login"] = "Максимальная длинна логина ".$cfg->max_login." символов.";
             }
-            if(strlen($var) < $cfg->min_login){
-                $e["active"] = "act";
-                $e["login"] = "Минимальная длинна логина ".$cfg->min_login." символов.";
+            if(strlen($array_data["login"]) < $cfg->min_login){
+                $error["active"] = "act";
+                $error["login"] = "Минимальная длинна логина ".$cfg->min_login." символов.";
             }
         }
         if($type == "pass"){
-            if(strlen($var) > $cfg->max_pass){
-                $e["active"] = "act";
-                $e["pass1"] = "Максимальная длинна пароля ".$cfg->max_pass." символов.";
+            if(strlen($array_data["password1"]) > $cfg->max_pass){
+                $error["active"] = "act";
+                $error["pass1"] = "Максимальная длинна пароля ".$cfg->max_pass." символов.";
             }
-            if(strlen($var) < $cfg->min_pass){
-                $e["active"] = "act";
-                $e["pass1"] = "Минимальная длинна пароля ".$cfg->min_pass." символов.";
+            if(strlen($array_data["password1"]) < $cfg->min_pass){
+                $error["active"] = "act";
+                $error["pass1"] = "Минимальная длинна пароля ".$cfg->min_pass." символов.";
             }
 
         }
+        return $error;
 
     }
     
-    public function checking_email($email){
-        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-            $e["active"] = "act";
-            $e["email"] = "Неверная почта";
+    public function checking_email($array_data){
+        if (!filter_var($array_data["email"], FILTER_VALIDATE_EMAIL)) {
+            $error["active"] = "act";
+            $error["email"] = "Неверная почта";
         }
+        return $error;
     }
 }
