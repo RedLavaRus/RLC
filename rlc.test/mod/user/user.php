@@ -32,7 +32,7 @@ Class User{
         //Преобразовать форму в массив
         $login =  "login";
         $password =  "pass";
-        $button =  "gotovo";
+        $button =  "Готово";
         $array_data = $this->form_array_login($login, $password,$button);
         //Проверка нажата ли кнопка
         $pres = $this->check_button_pressed($array_data);
@@ -44,11 +44,11 @@ Class User{
     }
     public function start_register(){
         //Начальные данные
-        $login = "";
-        $password1 = "";
-        $password2 = "";
-        $email = "";
-        $button =  "gotovo";        
+        $login = "login1";
+        $password1 = "login111";
+        $password2 = "login111";
+        $email = "login@test.ru";
+        $button =  "Готово";        
         $array_data = $this->form_array_register($login, $password1, $password2, $email,$button);
         //Проверка нажата ли кнопка
         $pres = $this->check_button_pressed($array_data);
@@ -117,12 +117,24 @@ Class User{
         //проверка на ошибки
         $error = $this-> error_ckeking_register($array_data);
         //Если ошибка есть то выводим форму
-        if($error != null){
-            $this->show_register();
-            return;
+        foreach($error as $er){
+            if(isset($er["active"]) and $er["active"] == "act"){
+                $this->show_register();
+                return;
+            }
         }
-        $array_data["hashpass"] = $this->hash_pass($array_data);
         
+        $array_data["hashpass"] = $this->hash_pass($array_data);
+        $array_data["status"] = "NEW";
+        $array_data["datereg"] = date("d.m.Y H:i:s");
+        $array_data["ipreg"] = "test";//$_SERVER['HTTP_CLIENT_IP'];
+        $array_data["dateauth"] = "none";
+        $array_data["ipauth"] = "none";//$_SERVER['HTTP_CLIENT_IP'];
+        $sql = new \Mod\Sql\Sql;
+        $connect = $sql->db_connect;
+            $sth = $connect->prepare("INSERT INTO `user` SET `login` = ?, `password` = ?, `email` = ?, `status` = ?, `datereg` = ?, `ipreg` = ?,`dateauth` = ?, `ipauth` = ?");
+            $sth->execute(array($array_data["login"],$array_data["hashpass"],$array_data["email"],$array_data["status"],$array_data["datereg"],$array_data["ipreg"],$array_data["dateauth"],$array_data["ipauth"]));
+        var_dump($connect);
     }
 
     /*
@@ -156,7 +168,8 @@ Class User{
         
     }
 
-    public function checking_uniformity($array_data){        
+    public function checking_uniformity($array_data){   
+        $error=null;     
         if($array_data["password1"] != $array_data["password2"]){
             $error["active"] = "act";
             $error["pass1"] = "Пароли не совпадают";
@@ -166,6 +179,7 @@ Class User{
     }
     
     public function length_check($type,$array_data){
+        $error=null;   
         $cfg = new \Mod\User\Config;
         if($type == "login"){
             if(strlen($array_data["login"]) > $cfg->max_login){
@@ -193,6 +207,7 @@ Class User{
     }
     
     public function checking_email($array_data){
+        $error=null;   
         if (!filter_var($array_data["email"], FILTER_VALIDATE_EMAIL)) {
             $error["active"] = "act";
             $error["email"] = "Неверная почта";
@@ -201,13 +216,15 @@ Class User{
     }
 
     public function checking_login_free($array_data){
+        $error=null;   
         //$array_data["login"]
         $sql = new \Mod\Sql\Sql;
         $connect = $sql->db_connect;
             $sth = $connect->prepare("SELECT * FROM `user` WHERE `login` = ?");
             $sth->execute(array($array_data["login"]));
             $result_sql = $sth->fetch(\PDO::FETCH_ASSOC);
-        if($result_sql["id"]){
+            
+        if($result_sql["id"] >= 1){
             $error["active"] = "act";
             $error["login"] = "Логин занят";
         }
