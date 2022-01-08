@@ -66,6 +66,6 @@ Class Router{
         $result->$funct();
     }
     public function e404(){
-        echo "error 404: page don't faunt!";
+        echo "error 404: page don't faunt!!!";
     }
 }
