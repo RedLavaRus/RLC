@@ -116,6 +116,13 @@ Class User{
     public function register($array_data){
         //проверка на ошибки
         $error = $this-> error_ckeking_register($array_data);
+        //Если ошибка есть то выводим форму
+        if($error != null){
+            $this->show_register();
+            return;
+        }
+        $array_data["hashpass"] = $this->hash_pass($array_data);
+        
     }
 
     /*
@@ -132,6 +139,8 @@ Class User{
         $error[] = $this->length_check("pass",$array_data);
         //проверить релевантность емаила
         $error[] = $this->checking_email($array_data);
+        //Проверка свободен ли логин
+        $error[] = $this->checking_login_free($array_data);
         return $error;
     }
    
@@ -189,5 +198,32 @@ Class User{
             $error["email"] = "Неверная почта";
         }
         return $error;
+    }
+
+    public function checking_login_free($array_data){
+        //$array_data["login"]
+        $sql = new \Mod\Sql\Sql;
+        $connect = $sql->db_connect;
+            $sth = $connect->prepare("SELECT * FROM `user` WHERE `login` = ?");
+            $sth->execute(array($array_data["login"]));
+            $result_sql = $sth->fetch(\PDO::FETCH_ASSOC);
+        if($result_sql["id"]){
+            $error["active"] = "act";
+            $error["login"] = "Логин занят";
+        }
+        return $error;
+    }
+    
+
+    /*
+        Генерирует хеш пароля
+    */
+    public function hash_pass($array_data){
+        $cfg = new \Mod\User\Config;
+        $hash = $array_data["password1"].$cfg->salt;
+        $hash = hash('sha256', $hash);
+        $hash = $hash.$array_data["login"];
+        $hash = hash('sha256', $hash);
+        return $hash;
     }
 }
