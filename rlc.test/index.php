@@ -13,6 +13,6 @@ spl_autoload_register(function ($class_name) {
     if(file_exists(MYPOS."/".$class_name . '.php')){include_once MYPOS."/".$class_name . '.php';}
     
 });
-
+session_start();
 $router = new \Mod\Router\Router;
 ?>

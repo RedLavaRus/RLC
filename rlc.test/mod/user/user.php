@@ -30,10 +30,15 @@ Class User{
    */
     public function start_login(){
         //Преобразовать форму в массив
-        $login =  "login";
-        $password =  "pass";
-        $button =  "Готово1";
-        $array_data = $this->form_array_login($login, $password,$button);
+        
+        if(isset($_POST["submit"])){
+            $login = $_POST["login"];
+            $password1 = $_POST["password1"];
+            $button =  $_POST["submit"];  
+            $array_data = $this->form_array_login($login, $password1,$button);
+        }else{            
+            $array_data = $this->form_array_register();
+        }
         //Проверка нажата ли кнопка
         $pres = $this->check_button_pressed($array_data);
         //Вывод формы
@@ -41,6 +46,7 @@ Class User{
             $this->show_login();
             return $this;
         }
+        $this->login($array_data);
     }
     public function start_register(){
         //Начальные данные
@@ -96,12 +102,12 @@ Class User{
         return false;
     }
 
-    public function show_login(){
+    public function show_login($error = null){
         $page[]="linemenu";
         $page[]="login";
         $page[]="footer";
         $view = new \Mod\View\View;
-        $view->show($page);
+        $view->show($page,$error);
     }
     /*
         Показать форму регистрации
@@ -153,6 +159,57 @@ Class User{
         echo "готово";
     }
 
+    
+    public function login($array_data){
+        $error_act = false;
+        $result_error = null;
+        //проверка на ошибки
+        $error = $this-> error_ckeking_login($array_data);
+        foreach($error as $er){
+            if(isset($er["active"]) and $er["active"] == "act"){
+                $error_act = true;
+                unset($er["active"]);
+                $var_name1 = array_keys($er);
+                $var_name = $var_name1[0];
+                $var_date = $er[$var_name];
+                $result_error[] = array($var_name,$var_date);
+            }
+        }
+
+        if($error_act){
+
+            $this->show_login($result_error);
+            return;
+        }
+
+        $this->go_auth($array_data);
+        $this->up_auth($array_data);
+        //Если ошибка есть то авторизовываем
+    }
+
+    public function go_auth($array_data){
+       
+        $sql = new \Mod\Sql\Sql;
+        $connect = $sql->db_connect;
+        $sth = $connect->prepare("SELECT * FROM `user` WHERE `login` = ?");
+        $sth->execute(array($array_data["login"]));
+        $result_sql = $sth->fetch(\PDO::FETCH_ASSOC);
+        
+        $array_data["hashpass"] = $this->hash_pass($array_data);
+       
+        if(!$result_sql["id"] >=  1){
+            $error["active"] = "act";
+            $error["pass1"] = "Что-то пошло не так";
+            return $error;
+        }
+
+        $_SESSION["id"] = $result_sql["id"];
+       
+    }
+
+    public function up_auth($array_data){
+
+    }
     /*
         Процесс проверки регистрации на оишбку
     */
@@ -171,6 +228,17 @@ Class User{
         $error[] = $this->checking_login_free($array_data);
         return $error;
     }
+
+    public function error_ckeking_login($array_data){
+        $error = null;
+        //Проверить соответствует ли длина логина
+        $error[] = $this->length_check("login", $array_data);
+        //проверить соответсвует ли длина пароля
+        $error[] = $this->length_check("pass",$array_data);
+        //Проверка свободен ли логин
+        $error[] = $this->ckekin_auth($array_data);
+        return $error;
+    }
    
     public function auth(){
         
@@ -182,6 +250,22 @@ Class User{
    
     public function recovery(){
         
+    }
+
+    public function ckekin_auth($array_data){
+        
+        $sql = new \Mod\Sql\Sql;
+        $connect = $sql->db_connect;
+        $sth = $connect->prepare("SELECT * FROM `user` WHERE `login` = ?");
+        $sth->execute(array($array_data["login"]));
+        $result_sql = $sth->fetch(\PDO::FETCH_ASSOC);
+        
+        $array_data["hashpass"] = $this->hash_pass($array_data);
+        if($result_sql["password"] !=  $array_data["hashpass"]){
+            $error["active"] = "act";
+            $error["pass1"] = "Неверный пароль";
+            return $error;
+        }
     }
 
     public function checking_uniformity($array_data){   
