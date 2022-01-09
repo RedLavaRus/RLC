@@ -12,7 +12,7 @@ Class Test{
             array("var3","300"),
             array("var4","400"),
         );
-
+        //echo $_SESSION["id"];
         $page[]="linemenu";
         $page[]="display";
         $page[]="shop";

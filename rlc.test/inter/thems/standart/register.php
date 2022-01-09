@@ -41,7 +41,7 @@
         </div>
 */ ?>
         <div class="register_box_button">
-            <a class="register_button_login" href="">Вход</a>
+            <a class="register_button_login" href="/login/">Вход</a>
             <p class="register_button">
                 <input class="register_button_input" name="submit" type="submit" value="Далее" />
             </p>

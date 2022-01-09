@@ -26,7 +26,7 @@
                 <a class="navigation_basket_button" href="#"><img class="navigation_basket_img" src="/src/img/ShoppingBasket.png" alt=""></a>
             </div>
             <div class="navigation_login">
-                <a class="navigation_login_button" href="#">Вход</a>
+                <a class="navigation_login_button" href="/login/">Вход</a>
             </div>
         </div>
     </div>
