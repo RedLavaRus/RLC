@@ -1,16 +1,17 @@
-<div class="login container">
+
+    <form action="/login/" method="post"><div class="login container">
         <div class="login_title">Вход</div>
 
         <div class="login_error">
             Не верный логин
         </div>
         <p>
-            <input class="login_username" id="username" name="username" required="required" type="text" placeholder="Имя" />
+            <input class="login_username" id="username" name="login" required="required" type="text" placeholder="Имя" />
         </p>
         <div class="login_error">&nbsp;
         </div>
         <p>
-            <input class="login_password" id="password" name="password" required="required" type="password" placeholder="Пароль" />
+            <input class="login_password" id="password" name="password1" required="required" type="password" placeholder="Пароль" />
         </p>
         <div class="login_error">&nbsp;
         </div>
@@ -22,3 +23,4 @@
             </p>
         </div>
     </div>
+    </form>

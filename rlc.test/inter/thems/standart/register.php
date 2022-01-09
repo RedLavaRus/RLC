@@ -1,6 +1,5 @@
 
-   
-
+    <form action="/register/" method="post">
     <div class="register container">
         <div class="register_title">Регистрация</div>
 
@@ -45,3 +44,5 @@
             </p>
         </div>
     </div>
+    </form>
+

@@ -32,13 +32,13 @@ Class User{
         //Преобразовать форму в массив
         $login =  "login";
         $password =  "pass";
-        $button =  "Готово";
+        $button =  "Готово1";
         $array_data = $this->form_array_login($login, $password,$button);
         //Проверка нажата ли кнопка
         $pres = $this->check_button_pressed($array_data);
         //Вывод формы
         if(!$pres){
-            $this->show_register();
+            $this->show_login();
             return $this;
         }
     }
@@ -134,7 +134,7 @@ Class User{
         $connect = $sql->db_connect;
             $sth = $connect->prepare("INSERT INTO `user` SET `login` = ?, `password` = ?, `email` = ?, `status` = ?, `datereg` = ?, `ipreg` = ?,`dateauth` = ?, `ipauth` = ?");
             $sth->execute(array($array_data["login"],$array_data["hashpass"],$array_data["email"],$array_data["status"],$array_data["datereg"],$array_data["ipreg"],$array_data["dateauth"],$array_data["ipauth"]));
-        var_dump($connect);
+        
     }
 
     /*
