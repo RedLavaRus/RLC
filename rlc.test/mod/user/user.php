@@ -44,12 +44,16 @@ Class User{
     }
     public function start_register(){
         //Начальные данные
-        $login = "login1";
-        $password1 = "login111";
-        $password2 = "login111";
-        $email = "login@test.ru";
-        $button =  "Готово";        
-        $array_data = $this->form_array_register($login, $password1, $password2, $email,$button);
+        if(isset($_POST["submit"])){
+            $login = $_POST["login"];
+            $password1 = $_POST["password1"];
+            $password2 = $_POST["password2"];
+            $email = $_POST["email"];
+            $button =  $_POST["submit"];              
+            $array_data = $this->form_array_register($login, $password1, $password2, $email,$button);
+        }else{
+            $array_data = $this->form_array_register();
+        }
         //Проверка нажата ли кнопка
         $pres = $this->check_button_pressed($array_data);
         //Вывод формы
@@ -73,7 +77,7 @@ Class User{
         Преобразовывает данные с формыв единый массив
         TODO: Добавить проверку капчи
     */
-    public function form_array_register($login, $password1, $password2, $email,$button){
+    public function form_array_register($login = null, $password1 = null, $password2 = null, $email = null,$button = null){
         $array_data["login"] = $login;
         $array_data["password1"] = $password1;
         $array_data["password2"] = $password2;
@@ -86,7 +90,7 @@ Class User{
         Возвращает труе или фалсе
     */
     public function check_button_pressed($button){
-        if($button["button"] == "Готово"){
+        if($button["button"] == "Далее"){
             return true;
         }
         return false;
@@ -102,26 +106,38 @@ Class User{
     /*
         Показать форму регистрации
     */
-    public function show_register(){
+    public function show_register($error = null){
         $page[]="linemenu";
         $page[]="register";
         $page[]="footer";
         $view = new \Mod\View\View;
-        $view->show($page);
+        $view->show($page,$error);
     }
 
     /*
         Запуск процесса регистрации
     */
     public function register($array_data){
+        $error_act = false;
+        $result_error = null;
         //проверка на ошибки
         $error = $this-> error_ckeking_register($array_data);
         //Если ошибка есть то выводим форму
         foreach($error as $er){
             if(isset($er["active"]) and $er["active"] == "act"){
-                $this->show_register();
-                return;
+                $error_act = true;
+                unset($er["active"]);
+                $var_name1 = array_keys($er);
+                $var_name = $var_name1[0];
+                $var_date = $er[$var_name];
+                $result_error[] = array($var_name,$var_date);
             }
+        }
+
+        if($error_act){
+
+            $this->show_register($result_error);
+            return;
         }
         
         $array_data["hashpass"] = $this->hash_pass($array_data);
@@ -134,7 +150,7 @@ Class User{
         $connect = $sql->db_connect;
             $sth = $connect->prepare("INSERT INTO `user` SET `login` = ?, `password` = ?, `email` = ?, `status` = ?, `datereg` = ?, `ipreg` = ?,`dateauth` = ?, `ipauth` = ?");
             $sth->execute(array($array_data["login"],$array_data["hashpass"],$array_data["email"],$array_data["status"],$array_data["datereg"],$array_data["ipreg"],$array_data["dateauth"],$array_data["ipauth"]));
-        
+        echo "готово";
     }
 
     /*
