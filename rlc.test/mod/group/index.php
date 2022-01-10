@@ -20,12 +20,26 @@ Class Index{
     }
     /*
     Удалить группу
-    */
 
+    */
+    public function delete_group($group){
+        $sql = new \Mod\Sql\Sql;
+        $connect = $sql->db_connect;
+        $sth = $connect->prepare("DELETE FROM `grp` WHERE `grp` = ?");
+        $sth->execute(array($group));
+        return $sth;
+    }
     /*
     Список групп
     */
-
+    public function list_group(){
+        $sql = new \Mod\Sql\Sql;
+        $connect = $sql->db_connect;
+        $sth = $connect->prepare("SELECT * FROM `grp` ORDER BY `id`");
+        $sth->execute();
+        $array = $sth->fetchAll(\PDO::FETCH_ASSOC);
+        return $array;
+    }
     /*
     Добавить пользователя в группу
     */
