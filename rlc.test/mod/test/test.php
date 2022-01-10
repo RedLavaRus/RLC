@@ -7,9 +7,7 @@ Class Test{
 
        //$sql = new \Mod\Group\Install; 
        $grp = new \Mod\Group\Index;
-       $res_grp = $grp->add_group("user1","user1");
-       $res_grp = $grp->add_group("user2","user2");
-       $res_grp = $grp->list_group();
+       $res_grp = $grp->add_user_to_group(1,"admin");
       //$res_grp = $grp->delete_group("user3");
       var_dump( "<pre>",$res_grp);
         //new \Mod\User\Install;
