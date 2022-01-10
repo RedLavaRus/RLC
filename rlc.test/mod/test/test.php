@@ -5,6 +5,12 @@ namespace Mod\test;
 Class Test{
     public function test(){
 
+       //$sql = new \Mod\Group\Install; 
+       $grp = new \Mod\Group\Index;
+       $res_grp = $grp->add_group("user1","user1");
+       $res_grp = $grp->add_group("user2","user2");
+       $res_grp = $grp->add_group("user3","user3");
+       echo $res_grp;
         //new \Mod\User\Install;
         $data = array(
             array("var1","100"),
