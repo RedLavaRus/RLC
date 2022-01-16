@@ -56,13 +56,16 @@ Class Index{
     /*
     Показать группу пользователя
     */
-    public function show_group_user($id_user){
+    public function show_group_user($id_user,$type = null){
         $sql = new \Mod\Sql\Sql;
         $connect = $sql->db_connect;
             $sth = $connect->prepare("SELECT * FROM `grp_user` WHERE `id` = ?");
             $sth->execute(array($id_user));
             $result_sql = $sth->fetch(\PDO::FETCH_ASSOC);
             if(isset($result_sql["id"]) and $result_sql["id"] >=1){
+                if($type =="id"){
+                    return $result_sql["id"];
+                }
                 return $result_sql["grp"];
             }
         return 0;

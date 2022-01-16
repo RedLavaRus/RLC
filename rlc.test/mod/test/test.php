@@ -12,10 +12,10 @@ Class Test{
       //var_dump( "<pre>",$res_grp);
         //new \Mod\User\Install;
         $id=1;
-        $permission="admin1321";
+        $permission="admin";
         $test = new \Mod\Permission\Permission;
-        $test->add_permission_group($id,$permission);
-
+        $res = $test->go($permission);
+        //var_dump($res);
         die();
         $data = array(
             array("var1","100"),
