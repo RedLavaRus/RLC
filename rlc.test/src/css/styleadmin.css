@@ -1,0 +1,335 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Raleway', sans-serif;
+    display: flex;
+    background-color: #F6F5EA;
+    height: 100vh;
+    background-color: #F0EEFB;
+}
+
+
+/* Левое меню с иконками */
+
+.menu_lvl-1 {
+    width: 165px;
+    padding-left: 10px;
+    height: 100%;
+    background-color: #213991;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 4px 0px 4px 0px rgba(10, 27, 88, 0.2);
+    justify-content: space-between;
+}
+
+.menu_lvl-1_up {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo {
+    margin-top: 20px;
+    width: 107px;
+}
+
+.menu_lvl-1_ul {
+    padding: 0;
+    list-style: none;
+}
+
+.menu_lvl-1_li {
+    display: flex;
+    width: 135px;
+    height: 55px;
+    border-radius: 50px 0 0 50px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 15px 0;
+    padding-right: 30px;
+    transition: 1s linear;
+    color: #fff;
+}
+
+.menu_lvl-1_li_icon {
+    width: 22px;
+    height: 26px;
+    background-image: url(/src/img/imagewhite.png);
+    display: block;
+}
+
+.menu_lvl-1_link {
+    display: block;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 300;
+}
+
+.menu_lvl-1_help {
+    display: flex;
+    width: 65px;
+    height: 135px;
+    margin-right: 25px;
+    border-radius: 50px 50px 0 0;
+    background-color: #EA2340;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: .2s linear !important;
+}
+
+.menu_lvl-1_help_icon {
+    width: 22px;
+    height: 26px;
+    background-image: url(/src/img/imagewhite.png);
+    display: block;
+}
+
+.menu_lvl-1_help_link {
+    display: block;
+    text-decoration: none;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 300;
+}
+
+
+/* Левое меню анимация */
+
+.menu_lvl-1_li:hover {
+    padding-right: -30px;
+    border-radius: 50px 0 0 50px;
+    background-color: #fff;
+    justify-content: center;
+    color: #213991;
+    transition: 1s linear !important;
+}
+
+.menu_lvl-1_li:hover .menu_lvl-1_link {
+    color: #213991;
+    transition: 1s linear !important;
+}
+
+.menu_lvl-1_li:hover .menu_lvl-1_li_icon {
+    background-image: url(/src/img/image.png);
+    transition: 1s linear !important;
+}
+
+.menu_lvl-1_help:hover {
+    transform: scale(1.1);
+}
+
+
+/* Меню второй уровень 
+    width: calc(100vw - 180px);*/
+
+.menu_lvl-21 {
+    position: absolute;
+    width: 180px;
+    z-index: 999;
+    height: 100vh;
+    margin: 0 0 0 175px;
+}
+
+.menu_lvl-2 {
+    margin: 0;
+    height: 100vh;
+    width: 175px;
+    background-color: #fff;
+    box-shadow: 4px 0px 5px 0px rgba(189, 171, 151, 0.5);
+    padding: 0 15px;
+}
+
+.menu_lvl-2_title {
+    padding-top: 20px;
+    margin: 0;
+    font-size: 18px;
+    font-weight: 500;
+    color: #213991;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #E7E4F9;
+}
+
+.menu_lvl-2_ul {
+    padding-left: 10px;
+}
+
+.menu_lvl-2_li {
+    width: 175px;
+    list-style: circle;
+    color: #213991;
+    margin: 10px 0;
+}
+
+.menu_lvl-2_link {
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    color: #081957;
+}
+
+.menu_lvl-2_li:hover {
+    list-style: disc
+}
+
+.menu_lvl-2_li:hover .menu_lvl-2_link {
+    font-weight: 700;
+}
+
+.main_page {
+    width: calc(100vw - 135px);
+    height: 100vh;
+    margin: 0 10px 0 10px;
+}
+
+.main_page_work_zone {}
+
+.main_page_navigation {
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.main_page_navigation_search {}
+
+.main_page_navigation_search_form {
+    display: flex;
+    align-items: center;
+    width: auto;
+    margin-right: 30px;
+}
+
+.main_page_navigation_search_input {
+    width: 350px;
+    height: 30px;
+    padding-left: 15px;
+    border-radius: 6px;
+    border: none;
+    background: #F9F0DA;
+    outline: none;
+    transition: .3s linear;
+    box-shadow: 0px 0px 10px 0px rgba(189, 171, 151, 0.5) inset;
+    border: 1px solid #21399100;
+}
+
+.main_page_navigation_search_button {
+    cursor: pointer;
+    width: 35px;
+    height: 35px;
+    background-image: url(/src/img/search.png);
+    border: none;
+    margin-left: 10px;
+}
+
+.main_page_navigation_search_input:focus {
+    border: 1px solid #213991;
+}
+
+.main_page_navigation_notification {
+    display: flex;
+    align-items: center;
+}
+
+.main_page_navigation_notification_parent {
+    cursor: pointer;
+    width: 320px;
+    left: -170px;
+    position: relative;
+    background-color: #9121216c;
+}
+
+.main_page_navigation_notification_form {
+    position: absolute;
+    width: 320px;
+    min-height: 70px;
+    max-height: 450px;
+    margin-top: 70px;
+    background-color: #bbc8f8;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 5px 2px rgba(162, 151, 189, 0.5);
+}
+
+.main_page_navigation_notification_form_title {
+    font-size: 18px;
+    font-weight: 500;
+    text-align: center;
+    color: #213991;
+    border-radius: 5px;
+}
+
+.main_page_navigation_notification_form_item {
+    min-height: 20px;
+    max-height: 350px;
+    overflow-y: scroll;
+    margin: 10px 0;
+}
+
+.main_page_navigation_notification_form_item_section {
+    border-radius: 5px;
+    width: 280px;
+    height: auto;
+    background-color: #fff;
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 auto;
+    margin: 10px 0;
+    align-items: center;
+    padding: 10px;
+}
+
+.main_page_navigation_notification_form_item_section_icon {
+    width: 35px;
+    height: 35px;
+}
+
+.main_page_navigation_notification_form_item_section_text {
+    margin: 10px 0;
+    font-size: 14px;
+    width: 235px;
+}
+
+.main_page_navigation_notification_form_item_section_data {
+    font-size: 16px;
+    font-weight: 500;
+    width: 235px;
+    margin-top: 5px;
+    text-align: end;
+}
+
+.main_page_navigation_notification_form_button {
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 255px;
+    height: 35px;
+    background-color: #213991;
+    font-size: 14px;
+    color: #fff;
+    text-align: center;
+    margin: 0 auto;
+}
+
+.main_page_navigation_user {
+    display: flex;
+    align-items: center;
+}
+
+.main_page_navigation_notification_span {}
+
+.main_page_navigation_notification_image {}
+
+.main_page_navigation_user_name {}
+
+.main_page_navigation_user_photo {
+    margin-left: 20px;
+    background-color: rgb(104, 103, 103);
+    width: 35px;
+    height: 35px;
+    border-radius: 50px;
+}
