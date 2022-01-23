@@ -11,14 +11,13 @@ Class Index{
             $sth->execute(array($action));
             $result_sql = $sth->fetch(\PDO::FETCH_ASSOC);
         //Проверка на сущность
-        if(!($result_sql["id"] >= 1)) {            
-            die();
-        }
+
 
         $class = $result_sql["class"];
         $funct = $result_sql["funct"];
         $result = new $class;
         $result->$funct();
+        
     }
     /*
     Заказы orders
