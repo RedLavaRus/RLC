@@ -5,35 +5,35 @@
             <img class="logo" src="/src/img/redlavalogo.png" alt="">
             <ul class="menu_lvl-1_ul">
 
-                <a class="menu_lvl-1_link" href="">
+                <a class="menu_lvl-1_link" href="" id="el1">
                     <li class="menu_lvl-1_li">
                         <div class="menu_lvl-1_li_icon"></div>
                         заказы
                     </li>
                 </a>
 
-                <a class="menu_lvl-1_link" href="">
+                <a class="menu_lvl-1_link" href=""  id="el2">
                     <li class="menu_lvl-1_li">
                         <div class="menu_lvl-1_li_icon"></div>
                         магазин
                     </li>
                 </a>
 
-                <a class="menu_lvl-1_link" href="">
+                <a class="menu_lvl-1_link" href=""  id="el3">
                     <li class="menu_lvl-1_li">
                         <div class="menu_lvl-1_li_icon"></div>
                         пользователь
                     </li>
                 </a>
 
-                <a class="menu_lvl-1_link" href="">
+                <a class="menu_lvl-1_link" href=""  id="el4">
                     <li class="menu_lvl-1_li">
                         <div class="menu_lvl-1_li_icon"></div>
                         настройки
                     </li>
                 </a>
 
-                <a class="menu_lvl-1_link" href="">
+                <a class="menu_lvl-1_link" href=""  id="el5">
                     <li class="menu_lvl-1_li">
                         <div class="menu_lvl-1_li_icon"></div>
                         маркетплейс
@@ -47,33 +47,25 @@
             <a class="menu_lvl-1_help_link" href="">помощь</a>
         </div>
     </div>
-    <!-- <div class="menu_lvl-2">
-        <h3 class="menu_lvl-2_title">Главная</h3>
-        <ul class="menu_lvl-2_ul">
-
-            <li class="menu_lvl-2_li">
-                <a class="menu_lvl-2_link" href="">Расходы</a>
-            </li>
-
-            <li class="menu_lvl-2_li">
-                <a class="menu_lvl-2_link" href="">Общий доход</a>
-            </li>
-
-            <li class="menu_lvl-2_li">
-                <a class="menu_lvl-2_link" href="">Статистика доходов</a>
-            </li>
-
-            <li class="menu_lvl-2_li">
-                <a class="menu_lvl-2_link" href="">Статистика посещений</a>
-            </li>
-
-            <li class="menu_lvl-2_li">
-                <a class="menu_lvl-2_link" href="">Продвижение товара</a>
-            </li>
-
-        </ul>
-    </div>
-    -->
+    <div class="content_load_menu"></div>
+<script>
+    $('#el1').on('click', function(){ //При клике по элементу с id=price выполнять...
+        $.ajax({
+            url: 'price.html', //Путь к файлу, который нужно подгрузить
+            type: 'GET',
+            beforeSend: function(){
+                $('#content_load_menu').empty(); //Перед выполнением очищает содержимое блока с id=content
+            },
+            success: function(responce){        
+                    $('#content_load_menu').append(responce); //Подгрузка внутрь блока с id=content
+            },
+            error: function(){
+                alert('Error!');            
+            }
+        });
+    });
+</script>
+    
     <div class="main_page">
         <div class="main_page_navigation">
             <div class="main_page_navigation_search">

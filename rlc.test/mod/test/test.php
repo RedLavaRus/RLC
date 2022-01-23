@@ -5,7 +5,7 @@ namespace Mod\test;
 Class Test{
     public function test(){
 
-       //$sql = new \Mod\Permission\Install; 
+       $sql = new \Mod\Ajax\Install; 
       // $grp = new \Mod\Group\Index;
        //$res_grp = $grp->add_user_to_group(1,"admin");
       //$res_grp = $grp->delete_group("user3");
