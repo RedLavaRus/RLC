@@ -154,18 +154,26 @@ $(function(){
 		});
 	});
 });
+
+const popup = document.querySelector('.menu_lvl-2_ul');
+
+document.onclick = function(e){
+    if ( event.target.className != 'pop-up' ) {
+        popup.style.display = 'none';
+    };
+};
+
+
+
 </script>
-
-      <script type="text/javascript">
-
-$(document).ready(function(){
-    $('#el1').click(function(){
-        $('#content_load_menu').load('/ajax/?act=el1');
+<script type="text/javascript">
+$(document).mouseup(function (event) {
+        if ($(".menu_lvl-2").has(event.target).length === 0){
+            $(".menu_lvl-2").hide();
+        }
     });
-})
+    </script>
 
 
-
-      </script>
 </body>
 </html>
