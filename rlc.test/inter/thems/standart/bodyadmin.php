@@ -1,44 +1,50 @@
 
 <body>
+    
+
+<div class="menu_lvl-21" id="content_load_menu">
+        
+    </div>
+
     <div class="menu_lvl-1">
         <div class="menu_lvl-1_up">
             <img class="logo" src="/src/img/redlavalogo.png" alt="">
             <ul class="menu_lvl-1_ul">
 
-                <a class="menu_lvl-1_link" href="" id="el1">
-                    <li class="menu_lvl-1_li">
-                        <div class="menu_lvl-1_li_icon"></div>
+                
+                    <li class="menu_lvl-1_li" id="el1">
+                        <div class="menu_lvl-1_li_icon"  id="el1"></div>
                         заказы
                     </li>
-                </a>
+                
 
-                <a class="menu_lvl-1_link" href=""  id="el2">
-                    <li class="menu_lvl-1_li">
-                        <div class="menu_lvl-1_li_icon"></div>
+                
+                    <li class="menu_lvl-1_li"  id="el2">
+                        <div class="menu_lvl-1_li_icon"   id="el2"></div>
                         магазин
                     </li>
-                </a>
+                
 
-                <a class="menu_lvl-1_link" href=""  id="el3">
-                    <li class="menu_lvl-1_li">
+                
+                    <li class="menu_lvl-1_li"  id="el3"   id="el3">
                         <div class="menu_lvl-1_li_icon"></div>
                         пользователь
                     </li>
-                </a>
+                
 
-                <a class="menu_lvl-1_link" href=""  id="el4">
-                    <li class="menu_lvl-1_li">
+                
+                    <li class="menu_lvl-1_li"  id="el4"   id="el4">
                         <div class="menu_lvl-1_li_icon"></div>
                         настройки
                     </li>
-                </a>
+               
 
-                <a class="menu_lvl-1_link" href=""  id="el5">
-                    <li class="menu_lvl-1_li">
+                
+                    <li class="menu_lvl-1_li"  id="el5"   id="el5">
                         <div class="menu_lvl-1_li_icon"></div>
                         маркетплейс
                     </li>
-                </a>
+                
 
             </ul>
         </div>
@@ -46,25 +52,10 @@
             <div class="menu_lvl-1_help_icon"></div>
             <a class="menu_lvl-1_help_link" href="">помощь</a>
         </div>
+        
     </div>
-    <div class="content_load_menu"></div>
-<script>
-    $('#el1').on('click', function(){ //При клике по элементу с id=price выполнять...
-        $.ajax({
-            url: 'price.html', //Путь к файлу, который нужно подгрузить
-            type: 'GET',
-            beforeSend: function(){
-                $('#content_load_menu').empty(); //Перед выполнением очищает содержимое блока с id=content
-            },
-            success: function(responce){        
-                    $('#content_load_menu').append(responce); //Подгрузка внутрь блока с id=content
-            },
-            error: function(){
-                alert('Error!');            
-            }
-        });
-    });
-</script>
+    
+
     
     <div class="main_page">
         <div class="main_page_navigation">
@@ -82,6 +73,99 @@
                 <div class="main_page_navigation_user_photo"></div>
             </div>
         </div>
-</body>
 
+        <script type="text/javascript">
+$(function(){		
+	$('#el1').on('click', function(){		
+		$.ajax({
+			url: '/ajax/?act=el1',
+			type: 'GET',
+			beforeSend: function(){
+				$('#content_load_menu').empty();		
+			},
+			success: function(responce){		
+					$('#content_load_menu').append(responce);
+			},
+			error: function(){
+				alert('Error!');			
+			}
+		});
+	});
+	$('#el2').on('click', function(){	//При клике по элементу с id=price выполнять...
+		$.ajax({
+			url: '/ajax/?act=el2', //Путь к файлу, который нужно подгрузить
+			type: 'GET',
+			beforeSend: function(){
+				$('#content_load_menu').empty(); //Перед выполнением очищает содержимое блока с id=content
+			},
+			success: function(responce){		
+					$('#content_load_menu').append(responce); //Подгрузка внутрь блока с id=content
+			},
+			error: function(){
+				alert('Error!');			
+			}
+		});
+	});
+	$('#el3').on('click', function(){		
+		$.ajax({
+			url: '/ajax/?act=el3',
+			type: 'GET',
+			beforeSend: function(){
+				$('#content_load_menu').empty();		
+			},
+			success: function(responce){		
+					$('#content_load_menu').append(responce);
+			},
+			error: function(){
+				alert('Error!');			
+			}
+		});
+	});
+    
+	$('#el4').on('click', function(){		
+		$.ajax({
+			url: '/ajax/?act=el4',
+			type: 'GET',
+			beforeSend: function(){
+				$('#content_load_menu').empty();		
+			},
+			success: function(responce){		
+					$('#content_load_menu').append(responce);
+			},
+			error: function(){
+				alert('Error!');			
+			}
+		});
+	});
+    
+	$('#el5').on('click', function(){		
+		$.ajax({
+			url: '/ajax/?act=el5',
+			type: 'GET',
+			beforeSend: function(){
+				$('#content_load_menu').empty();		
+			},
+			success: function(responce){		
+					$('#content_load_menu').append(responce);
+			},
+			error: function(){
+				alert('Error!');			
+			}
+		});
+	});
+});
+</script>
+
+      <script type="text/javascript">
+
+$(document).ready(function(){
+    $('#el1').click(function(){
+        $('#content_load_menu').load('/ajax/?act=el1');
+    });
+})
+
+
+
+      </script>
+</body>
 </html>
