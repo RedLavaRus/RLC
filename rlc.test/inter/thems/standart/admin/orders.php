@@ -3,23 +3,15 @@
         <ul class="menu_lvl-2_ul">
 
             <li class="menu_lvl-2_li">
-                <a class="menu_lvl-2_link" href="">Расходы</a>
+                <a class="menu_lvl-2_link" href="">В ожидании</a>
             </li>
 
             <li class="menu_lvl-2_li">
-                <a class="menu_lvl-2_link" href="">Общий доход</a>
+                <a class="menu_lvl-2_link" href="">Все заказы</a>
             </li>
 
             <li class="menu_lvl-2_li">
-                <a class="menu_lvl-2_link" href="">Статистика доходов</a>
-            </li>
-
-            <li class="menu_lvl-2_li">
-                <a class="menu_lvl-2_link" href="">Статистика посещений</a>
-            </li>
-
-            <li class="menu_lvl-2_li">
-                <a class="menu_lvl-2_link" href="">Продвижение товара</a>
+                <a class="menu_lvl-2_link" href="">Статистика</a>
             </li>
 
         </ul>

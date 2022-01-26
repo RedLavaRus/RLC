@@ -23,7 +23,11 @@
                         <div class="menu_lvl-1_li_icon"   id="el2"></div>
                         магазин
                     </li>
-                
+
+					<li class="menu_lvl-1_li"  id="el6"   id="el4">
+                        <div class="menu_lvl-1_li_icon"></div>
+                        блог
+                    </li>
 
                 
                     <li class="menu_lvl-1_li"  id="el3"   id="el3">
@@ -141,6 +145,21 @@ $(function(){
 	$('#el5').on('click', function(){		
 		$.ajax({
 			url: '/ajax/?act=el5',
+			type: 'GET',
+			beforeSend: function(){
+				$('#content_load_menu').empty();		
+			},
+			success: function(responce){		
+					$('#content_load_menu').append(responce);
+			},
+			error: function(){
+				alert('Error!');			
+			}
+		});
+	});
+	$('#el6').on('click', function(){		
+		$.ajax({
+			url: '/ajax/?act=el6',
 			type: 'GET',
 			beforeSend: function(){
 				$('#content_load_menu').empty();		

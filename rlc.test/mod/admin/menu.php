@@ -38,4 +38,11 @@ Class Menu{
         $view = new \Mod\View\View;
         $view->view($dir,$page);
     }
+    //маркетплейс
+    public function el6(){
+        $page[]="blog";
+        $dir = "admin";
+        $view = new \Mod\View\View;
+        $view->view($dir,$page);
+    }
 }
