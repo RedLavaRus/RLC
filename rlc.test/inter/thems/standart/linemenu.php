@@ -11,9 +11,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 </head>
 
-<body>
+<body class="mine_body">
     <div class="navigation container">
-        <div class="navigation_logotip"><img class="navigation_logotip_img" src="/src/img/RedLava.png" alt=""></div>
+        <div class="navigation_logotip"><img class="navigation_logotip_img" src="/src/img/logo.png" alt=""></div>
 
         <div class="navigation_link">
             <a class="navigation_link_shop" href="#">магазин</a>

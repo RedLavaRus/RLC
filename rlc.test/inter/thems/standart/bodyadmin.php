@@ -1,5 +1,5 @@
 
-<body>
+<body class="body_admin">
     
 
 <div class="menu_lvl-21" id="content_load_menu">

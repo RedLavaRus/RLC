@@ -12,24 +12,24 @@ Class Test{
       //var_dump( "<pre>",$res_grp);
         //new \Mod\User\Install;
         $id=1;
-        $permission="admin";
-        $test = new \Mod\Permission\Permission;
-        $res = $test->go($permission);
+        //$permission="admin";
+        //$test = new \Mod\Permission\Permission;
+        //$res = $test->go($permission);
         //var_dump($res);
-        die();
-        $data = array(
-            array("var1","100"),
-            array("var2","200"),
-            array("var3","300"),
-            array("var4","400"),
-        );
+        
         //echo $_SESSION["id"];
+        $dir="news";
         $page[]="linemenu";
-        $page[]="display";
-        $page[]="shop";
-        $page[]="footer";
+
+        $page1[]="news";//_all";
+        $page1[]="small_news";
+        $page1[]="calendar";
+
+        $page3[]="footer";
         $view = new \Mod\View\View;
-        $view->show($page,$data);
+        $view->show($page);
+        $view->view($dir,$page1);
+        $view->show($page3);
     }
 
 }
