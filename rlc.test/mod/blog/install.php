@@ -15,7 +15,8 @@ Class Install {
             datecreat VARCHAR(255)  NOT NULL, 
             weiv int(9)  NOT NULL, 
             comment int(9)  NOT NULL, 
-            shows VARCHAR(255)  NOT NULL
+            shows VARCHAR(255)  NOT NULL,
+            url VARCHAR(255)
            )
         ';
         $sql = new \Mod\Sql\Sql;
@@ -37,6 +38,7 @@ Class Install {
         $res = $sql1->db_connect->exec($sql_create1);
         var_dump($res);
     } 
+
 
 
 }
