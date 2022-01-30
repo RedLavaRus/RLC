@@ -1,6 +1,6 @@
 <?php
 
-namespace Mod\Block;
+namespace Mod\Blog;
 
 Class Description{
     public $author = "JaligWei";
