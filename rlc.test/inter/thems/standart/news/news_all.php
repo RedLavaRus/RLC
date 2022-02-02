@@ -1,48 +1,20 @@
+<?php
 
+?>
     <div class="news_all container">
         <div class="news_all_contant">
-            <div class="news_all_contant_element">
-                <div class="news_all_contant_element_title">Убеждённость некоторых оппонентов расставила все точки над i</div>
-                <div class="news_all_contant_element_data">02.03.2022</div>
-                <div class="news_all_contant_element_text">Вот вам яркий пример современных тенденций - социально-экономическое развитие способствует подготовке и реализации укрепления моральных ценностей. Каждый из нас понимает очевидную вещь: курс на социально-ориентированный национальный проект
-                    однозначно фиксирует необходимость инновационных методов управления процессами.</div>
-                <a class="news_all_contant_element_link" href="">Читать полностью</a>
-            </div>
-            <div class="news_all_contant_element">
-                <div class="news_all_contant_element_title">Убеждённость некоторых оппонентов расставила все точки над i</div>
-                <div class="news_all_contant_element_data">02.03.2022</div>
-                <div class="news_all_contant_element_text">Вот вам яркий пример современных тенденций - социально-экономическое развитие способствует подготовке и реализации укрепления моральных ценностей. Каждый из нас понимает очевидную вещь: курс на социально-ориентированный национальный проект
-                    однозначно фиксирует необходимость инновационных методов управления процессами.</div>
-                <a class="news_all_contant_element_link" href="">Читать полностью</a>
-            </div>
-            <div class="news_all_contant_element">
-                <div class="news_all_contant_element_title">Убеждённость некоторых оппонентов расставила все точки над i</div>
-                <div class="news_all_contant_element_data">02.03.2022</div>
-                <div class="news_all_contant_element_text">Вот вам яркий пример современных тенденций - социально-экономическое развитие способствует подготовке и реализации укрепления моральных ценностей. Каждый из нас понимает очевидную вещь: курс на социально-ориентированный национальный проект
-                    однозначно фиксирует необходимость инновационных методов управления процессами.</div>
-                <a class="news_all_contant_element_link" href="">Читать полностью</a>
-            </div>
-            <div class="news_all_contant_element">
-                <div class="news_all_contant_element_title">Убеждённость некоторых оппонентов расставила все точки над i</div>
-                <div class="news_all_contant_element_data">02.03.2022</div>
-                <div class="news_all_contant_element_text">Вот вам яркий пример современных тенденций - социально-экономическое развитие способствует подготовке и реализации укрепления моральных ценностей. Каждый из нас понимает очевидную вещь: курс на социально-ориентированный национальный проект
-                    однозначно фиксирует необходимость инновационных методов управления процессами.</div>
-                <a class="news_all_contant_element_link" href="">Читать полностью</a>
-            </div>
-            <div class="news_all_contant_element">
-                <div class="news_all_contant_element_title">Убеждённость некоторых оппонентов расставила все точки над i</div>
-                <div class="news_all_contant_element_data">02.03.2022</div>
-                <div class="news_all_contant_element_text">Вот вам яркий пример современных тенденций - социально-экономическое развитие способствует подготовке и реализации укрепления моральных ценностей. Каждый из нас понимает очевидную вещь: курс на социально-ориентированный национальный проект
-                    однозначно фиксирует необходимость инновационных методов управления процессами.</div>
-                <a class="news_all_contant_element_link" href="">Читать полностью</a>
-            </div>
-            <div class="news_all_contant_element">
-                <div class="news_all_contant_element_title">Убеждённость некоторых оппонентов расставила все точки над i</div>
-                <div class="news_all_contant_element_data">02.03.2022</div>
-                <div class="news_all_contant_element_text">Вот вам яркий пример современных тенденций - социально-экономическое развитие способствует подготовке и реализации укрепления моральных ценностей. Каждый из нас понимает очевидную вещь: курс на социально-ориентированный национальный проект
-                    однозначно фиксирует необходимость инновационных методов управления процессами.</div>
-                <a class="news_all_contant_element_link" href="">Читать полностью</a>
-            </div>
+            
+            <?php
+foreach($data as $d){
+    
+
+    echo '<div class="news_all_contant_element"><div class="news_all_contant_element_title">'.$d["heads"].'</div>';
+    echo '<div class="news_all_contant_element_data">'.$d["heads"].'</div>';
+    echo '<div class="news_all_contant_element_text">'.$d["datecreat"].'</div>';
+    echo '<a class="news_all_contant_element_link" href="/blog/topic/thems='.$d["url"].'">Читать полностью</a></div>';
+}
+?>
+           
 
             <div class="pagination">
                 <a class="pagination_link" href="#">«</a>

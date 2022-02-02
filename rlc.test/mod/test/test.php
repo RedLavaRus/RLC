@@ -10,7 +10,7 @@ Class Test{
        //$res_grp = $grp->add_user_to_group(1,"admin");
       //$res_grp = $grp->delete_group("user3");
       //var_dump( "<pre>",$res_grp);
-        new \Mod\Blog\Install;
+        //new \Mod\Blog\Install;
         $id=1;
         //$permission="admin";
         //$test = new \Mod\Permission\Permission;
@@ -30,6 +30,10 @@ Class Test{
         $view->show($page);
         $view->view($dir,$page1);
         $view->show($page3);*/
+        $value = "Получает текст на русском и возвращает транслит.";
+        $test = new \Mod\Abc\ABC;
+            /**Получает текст на русском и возвращает транслит. */
+           echo  $test->ru_en($value);
     }
 
 }
