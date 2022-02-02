@@ -1234,7 +1234,6 @@ div[data-title]:hover:after {
 
 .news_all_contant_element {
     width: 710px;
-    height: 155px;
     padding: 20px 10px;
     margin-bottom: 20px;
     border-radius: 10px;
@@ -1256,6 +1255,11 @@ div[data-title]:hover:after {
     margin: 20px 0;
     font-size: 14px;
     font-weight: 300;
+    max-height: 82px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    box-orient: vertical;
+    line-clamp: 2;
 }
 
 .news_all_contant_element_link {

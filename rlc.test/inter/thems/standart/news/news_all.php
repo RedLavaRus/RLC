@@ -9,9 +9,9 @@ foreach($data as $d){
     
 
     echo '<div class="news_all_contant_element"><div class="news_all_contant_element_title">'.$d["heads"].'</div>';
-    echo '<div class="news_all_contant_element_data">'.$d["heads"].'</div>';
-    echo '<div class="news_all_contant_element_text">'.$d["datecreat"].'</div>';
-    echo '<a class="news_all_contant_element_link" href="/blog/topic/thems='.$d["url"].'">Читать полностью</a></div>';
+    echo '<div class="news_all_contant_element_data">'.$d["datecreat"].'</div>';
+    echo '<div class="news_all_contant_element_text">'.$d["texts"].'</div>';
+    echo '<a class="news_all_contant_element_link" href="/blog/topic/?thems='.$d["url"].'">Читать полностью</a></div>';
 }
 ?>
            
