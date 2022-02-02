@@ -70,4 +70,24 @@ Class View{
             }
         }
     }
+
+    public function view_line($dir,$page,$data = null){
+       
+
+        $conf = new \Mod\View\Config;
+        $thems = $conf->thems;
+        foreach($page as $p){
+            $file_name = MYPOS.'\inter\thems\\'.$thems."\\".$dir."\\".$p.".php";  
+                 
+            //Проверка на существование файла
+            if (file_exists($file_name)) {
+                include  $file_name;
+            }else{
+                $log = new \Mod\Logs\Logs;
+                $m = "Не найдет файл: ".$file_name;
+                $log->loging("view", $m);
+            }
+        }
+    }
+
 }
