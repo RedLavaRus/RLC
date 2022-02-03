@@ -9,7 +9,7 @@ Class Index{
     }
     public function show_news_all(){
 
-        $position = 1;
+        $position = 0;
         $sql = new \Mod\Sql\Sql;
         $connect = $sql->db_connect;
             $sth = $connect->prepare("SELECT * FROM `news` WHERE `shows` = 'yes' LIMIT 10 OFFSET ".$position." ");// WHERE `shows` = 'yes' LIMIT 10 OFFSET ?");
@@ -48,5 +48,32 @@ Class Index{
         $view->show($page);
         $view->view($dir,$page1);
         $view->show($page3);
+    }
+
+    public function show_lust_news($col = 2){
+        $sql = new \Mod\Sql\Sql;
+        $connect = $sql->db_connect;
+            $sth = $connect->prepare("SELECT * FROM `news` WHERE `shows` = 'yes' LIMIT ".$col." OFFSET ORDER BY `id` ");// WHERE `shows` = 'yes' LIMIT 10 OFFSET ?");
+            
+        
+            $bd = null;
+        while($result_sql = $sth->fetch(\PDO::FETCH_ASSOC)){
+            $bd[] = $result_sql;
+        }
+        return $bd;
+    }
+
+    public function lust_page_news($num_page = 1){
+        $num_page = $num_page - 1;
+        $position = $num_page * 10;
+        $sql = new \Mod\Sql\Sql;
+        $connect = $sql->db_connect;
+            $sth = $connect->prepare("SELECT * FROM `news` WHERE `shows` = 'yes' LIMIT 10 OFFSET ".$position." ");// WHERE `shows` = 'yes' LIMIT 10 OFFSET ?");
+            $sth->execute(array($position));
+        
+            $bd = null;
+        while($result_sql = $sth->fetch(\PDO::FETCH_ASSOC)){
+            $bd[] = $result_sql;
+        }
     }
 }
