@@ -67,5 +67,6 @@ Class Router{
     }
     public function e404(){
         echo "error 404: page don't faunt!!!";
+        die();
     }
 }
