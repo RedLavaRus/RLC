@@ -34,6 +34,10 @@ Class Index{
         $view->show($page3);
     }
     public function show_news_one(){
+        $thems = $_GET["thems"];
+        $this->up_wiev($thems);
+        $data_news = $this->date_one_news($thems);
+        $data_min = $this->blog_right_menu();
         $dir="news";
         $page[]="linemenu";
 
@@ -44,7 +48,7 @@ Class Index{
         $page3[]="footer";
         $view = new \Mod\View\View;
         $view->show($page);
-        $view->view($dir,$page1);
+        $view->view_line($dir,$page1,$data_news,NULL,NULL,NULL,NULL,NULL,$data_min);
         $view->show($page3);
     }
 
@@ -153,6 +157,21 @@ Class Index{
             }
             return $bd;
         
+    }
+    public function date_one_news($thems){
+        $sql = new \Mod\Sql\Sql;
+        $connect = $sql->db_connect;
+            $sth = $connect->prepare("SELECT * FROM `news` WHERE `url` = ? LIMIT 1 ");// WHERE `shows` = 'yes' LIMIT 10 OFFSET ?");
+            $sth->execute(array($thems));
+        
+           
+        return $sth->fetch(\PDO::FETCH_ASSOC);
+    }
+    public function up_wiev($thems){
+        $sql = new \Mod\Sql\Sql;
+        $connect = $sql->db_connect;
+            $sth = $connect->prepare("UPDATE `news` SET weiv=weiv+1  WHERE `url` = ? ");// WHERE `shows` = 'yes' LIMIT 10 OFFSET ?");
+            $sth->execute(array($thems));
     }
             
 }
