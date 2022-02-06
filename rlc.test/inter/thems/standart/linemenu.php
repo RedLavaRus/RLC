@@ -13,12 +13,12 @@
 
 <body class="mine_body">
     <div class="navigation container">
-        <div class="navigation_logotip"><img class="navigation_logotip_img" src="/src/img/logo.png" alt=""></div>
+        <div class="navigation_logotip"><a href="\"><img class="navigation_logotip_img" src="/src/img/logo.png" alt=""></a></div>
 
         <div class="navigation_link">
             <a class="navigation_link_shop" href="#">магазин</a>
             <a class="navigation_link_about_us" href="#">о нас</a>
-            <a class="navigation_link_articles" href="#">статьи</a>
+            <a class="navigation_link_articles" href="/blog/">статьи</a>
             <a class="navigation_link_help" href="#">справка</a>
         </div>
         <div class="navigation_right_side">

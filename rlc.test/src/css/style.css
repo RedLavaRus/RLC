@@ -1112,12 +1112,13 @@
 
 .other_news_content {
     width: 330px;
-    height: 165px;
+    max-height: 195px;
     padding: 10px;
     margin-bottom: 20px;
     border-radius: 10px;
     background-color: #faefe4;
     box-shadow: 0px 0px 20px 1px rgba(199, 196, 161, 0.5);
+    overflow: hidden;
 }
 
 .other_news_content_title {
@@ -1133,6 +1134,8 @@
     font-size: 16px;
     font-weight: 400;
     margin: 10px 0;
+    overflow: hidden;
+    max-height: 97px;
 }
 
 .other_news_content_link {

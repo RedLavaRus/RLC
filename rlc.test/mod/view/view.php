@@ -71,7 +71,7 @@ Class View{
         }
     }
 
-    public function view_line($dir,$page,$data = null,$data1 = null,$data2 = null,$data3 = null,$data4 = null,$data5 = null){
+    public function view_line($dir,$page,$data = null,$data1 = null,$data2 = null,$data3 = null,$data4 = null,$data5 = null,$data6 = null,$data7 = null){
        
 
         $conf = new \Mod\View\Config;

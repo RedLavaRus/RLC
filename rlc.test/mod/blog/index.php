@@ -17,7 +17,7 @@ Class Index{
             $this->e404();
         }
         $page_dox = $this->page_down_line($this_page);
-       
+        $data_min = $this->blog_right_menu();
         
 
         $dir="news";
@@ -30,7 +30,7 @@ Class Index{
         $page3[]="footer";
         $view = new \Mod\View\View;
         $view->show($page);
-        $view->view_line($dir,$page1,$db,$page_dox,$this->start,$this->end,$this->stop,$this_page);
+        $view->view_line($dir,$page1,$db,$page_dox,$this->start,$this->end,$this->stop,$this_page,$data_min);
         $view->show($page3);
     }
     public function show_news_one(){
@@ -137,6 +137,22 @@ Class Index{
         
         return $res;
 
+    }
+
+    public function blog_right_menu(){
+       
+            
+            $sql = new \Mod\Sql\Sql;
+            $connect = $sql->db_connect;
+                $sth = $connect->prepare("SELECT * FROM `news` WHERE `shows` = 'yes' ORDER BY weiv DESC LIMIT 2 ");// WHERE `shows` = 'yes' LIMIT 10 OFFSET ?");
+                $sth->execute(array());
+            
+                $bd = null;
+            while($result_sql = $sth->fetch(\PDO::FETCH_ASSOC)){
+                $bd[] = $result_sql;
+            }
+            return $bd;
+        
     }
             
 }
