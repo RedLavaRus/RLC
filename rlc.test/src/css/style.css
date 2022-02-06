@@ -1291,3 +1291,8 @@ div[data-title]:hover:after {
 .pagination a:hover:not(.active) {
     background-color: #ddd;
 }
+
+#pagination_link_in {
+    background-color: #312921;
+    color: #fff;
+}

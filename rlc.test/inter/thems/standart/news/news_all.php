@@ -1,5 +1,5 @@
 <?php
-
+//echo $data1;
 ?>
     <div class="news_all container">
         <div class="news_all_contant">
@@ -14,16 +14,28 @@ foreach($data as $d){
     echo '<a class="news_all_contant_element_link" href="/blog/topic/?thems='.$d["url"].'">Читать полностью</a></div>';
 }
 ?>
-           
+ <div class="pagination">          
+<?php
+//var_dump($data1,$data2,$data3,$data4);
+if($data2 != 1){
+    $p=$data2-1;
+    echo '<a class="pagination_link"  href="/blog/?page='.$p.'">«</a>';
+}
 
-            <div class="pagination">
-                <a class="pagination_link" href="#">«</a>
-                <a class="pagination_link" href="#">1</a>
-                <a class="pagination_link" href="#">2</a>
-                <a class="pagination_link" href="#">3</a>
-                <a class="pagination_link" href="#">4</a>
-                <a class="pagination_link" href="#">5</a>
-                <a class="pagination_link" href="#">6</a>
-                <a class="pagination_link" href="#">»</a>
-            </div>
-        </div>
+foreach($data1 as $a1){
+    if($a1 == $data5){
+        echo '<a class="pagination_link" id = "pagination_link_in" href="#">'. $a1.'</a>';
+    }else{
+    echo '<a class="pagination_link"href="/blog/?page='.$a1.'">'. $a1.'</a>';
+    }
+}
+if($data4 == "no"){
+    $p=$data3+1;
+    echo '<a class="pagination_link" href="/blog/?page='.$p.'">»</a>';
+}
+?>
+  </div>
+        </div>          
+              
+                
+            

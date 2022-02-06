@@ -3,19 +3,22 @@
 namespace Mod\Blog;
 
 Class Index{
+    public $start;
+    public $end;
+    public $stop;
     public function index(){
-
         
     }
     public function show_news_all(){
 
-       // echo ">>>>>>>>>>>>>".$this->num_page_news();
-        $db = $this->lust_page_news($this->num_page_news());
+        $this_page =$this->num_page_news();//текущая страница
+        $db = $this->lust_page_news($this_page);//выводит список новостей на этой странице
         if($db == null){
             $this->e404();
         }
+        $page_dox = $this->page_down_line($this_page);
+       
         
-
 
         $dir="news";
         $page[]="linemenu";
@@ -27,7 +30,7 @@ Class Index{
         $page3[]="footer";
         $view = new \Mod\View\View;
         $view->show($page);
-        $view->view_line($dir,$page1,$db);
+        $view->view_line($dir,$page1,$db,$page_dox,$this->start,$this->end,$this->stop,$this_page);
         $view->show($page3);
     }
     public function show_news_one(){
@@ -83,8 +86,57 @@ Class Index{
         }
         return $page;
     }
+
+   
     public function e404(){
         echo "error 404: page don't faunt!!!";
         die();
     }
+
+    public function down_page_generator($this_page){
+        $full_list_page = $this->full_list();
+    }
+
+    public function full_list(){
+        $sql = new \Mod\Sql\Sql;
+        $connect = $sql->db_connect;
+            $sth = $connect->prepare("SELECT COUNT(*) FROM `news` WHERE `shows` = 'yes' ");
+            $sth->execute(array());
+            $result_sql = $sth->fetch(\PDO::FETCH_ASSOC);
+            $max_page = $result_sql["COUNT(*)"] /10;
+            return ceil($max_page);            
+    }
+
+    public function page_down_line($this_page){
+
+        $full_list = $this->full_list();
+        $page_list = $this->max_in_this_page($full_list,$this_page);//список соседних страниц
+        return $page_list;
+    }
+
+    public function max_in_this_page($full_list,$this_page){
+        $group_page = ceil($this_page/6);
+        $start = (($group_page-1)*6)+1;
+        $end = $group_page*6;
+       
+        if($end < $full_list) {
+            $end = $end;
+            
+            $this->stop = "no";
+        }else{
+            $end =  $full_list;
+            $this->stop = "yes";
+        }
+        $this->start = $start;
+        $this->end = $end;
+        $res = null;
+        while($start <= $end ){
+            $res[] =$start ;
+            $start ++;
+        }
+        
+        return $res;
+
+    }
+            
 }
