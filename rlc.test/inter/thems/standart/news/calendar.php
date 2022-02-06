@@ -1,4 +1,4 @@
-
+<?php /*
             <div class="other_news_kalendar">
                 <div class="jzdbox1 jzdbasf jzdcal">
 
@@ -57,5 +57,6 @@
                     <span class="jzdb"><!--BLANK--></span>
                 </div>
             </div>
+            */ ?>
         </div>
     </div>
